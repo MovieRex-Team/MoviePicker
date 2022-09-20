@@ -1,0 +1,10 @@
+1.4 Product Scopes 
+
+- This software is a website which provides movie recommendations to a user based on their preferences using a propropity algorithm to find the best suitable choices. The goal is to provide users with a hassle-free and swift way of finding something new to watch, by providing a limited number of selections relevant to the user’s preferences.
+
+2.2 Product Functions 
+
+- Movie recommendation based off multiple user interests and history, along with movie data from the internet, presented in a streamline fashion. Based off analysis of user trends, we present options from our machine learning algorithm that best suits the interest of the user. The user must then choose from a few options(A “seen it” button, “Didn’t like it” button, or “I enjoyed it” button) and based on the option selected, the algorithm start again. 
+
+Link to complete doc: 
+https://docs.google.com/document/d/1OWnythssdp5JZ93wjDLLqAFLjZWvwzeSbrbXtMe2IEU/edit#heading=h.453zsc64s6i7
