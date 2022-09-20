@@ -1,0 +1,1 @@
+Hi I'm Rob. I'm in the Java program at Washtenaw Community College. In one more semester I'll transfer to Eastern Michigan University to finish my bachelor's degree in Computer Science. I really enjoy computer programming. Some of my hobbies are weight lifting, watching movies, programming, and creating 3d art using Blender.
