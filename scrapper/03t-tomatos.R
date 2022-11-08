@@ -79,6 +79,9 @@ if (F) {
   # surl <- "/m/hercules-prisoner-of-evil/"
   # surl <- "/m/infinitum_subject_unknown/"
   surl <- "/m/karthikeya_2/"
+  surl <- "/m/city_of_god"
+  
+  
   data_file <- tomato2_file
   rd <- remDr
   nlimit = 50
@@ -90,7 +93,7 @@ getMovieUserReviewsList <- function(rd, surl, data_file, sv = TRUE,
                              nlimit = 50, v = FALSE) {
   trim_txt <- "https://www.rottentomatoes.com"
   appd_txt <- "reviews?type=user"
-  nav_url <- paste0(trim_txt, surl, appd_txt)
+  nav_url <- paste0(trim_txt, surl, "/", appd_txt)
   err <- tryCatch({
     rd$navigate(nav_url)
   }, error = function(e) e)
@@ -172,7 +175,7 @@ getMovieUserReviewsList <- function(rd, surl, data_file, sv = TRUE,
     ##TODO: Fix surl<-"/m/infinitum_subject_unknown/" page 2 ###
     # try(d_r_lp <- f_extract_vector_tomato_xml(pg_xml, surl, nexti), silent = T)
     if (is.null(d_r_lp)) {
-      try(d_r_lp <- .f_extract_tomato_xml(pg_xml, surl, nexti), silent = T)
+      try(d_r_lp <- f_extract_tomato_xml(pg_xml, surl, nexti), silent = T)
     }
     
     xp_next <- '//*[contains(@class, "js-prev-next-paging-next")]'
@@ -253,7 +256,7 @@ getMovieUserReviewsList <- function(rd, surl, data_file, sv = TRUE,
   return(list(surl = surl, nexti = nexti))
 }
 
-for (i in seq(nrow(d_remains))) {  # i=30
+for (i in seq(nrow(d_remains))) {  #  i=1 i=30
   cat("tomatourl: ", d_remains[i, tomatourl], "\n")
   # getMovieUserReviewsList(remDr, d[i, tomatourl], tomato2_file, v = v)
   getMovieUserReviewsList(

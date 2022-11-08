@@ -1,22 +1,32 @@
 source(file.path(getwd(), "00l-loaders.R"))
 
-d_mov <- mov_load()
-d_mov <- d_mov[!is.na(tomatourl)]
-d_mov <- d_mov[imdbvotes > 200]
-# d <- d[str_detect(language, "(?i)english")]
-# d <- d[, 'tomatourl']
+if (TRUE) {
+  d_mov <- mov_load()
+  d_mov <- d_mov[!is.na(tomatourl)]
+  d_mov <- d_mov[imdbvotes > 200]
+  # d <- d[str_detect(language, "(?i)english")]
+  # d <- d[, 'tomatourl']
+  
+  d_rev <- rev_load()
+  d_rev[d_mov, on = c(surl = 'tomatourl'), tomatourl := i.tomatourl]
+  d_surl <- d_rev[!is.na(tomatourl), !c('uurl','rating')][, unique(.SD)]
+  d_surl[, fix := FALSE]
+  d_mov[d_surl, on = c(tomatourl = 'surl'), fix := i.fix]
+  d_mov[is.na(fix), fix := TRUE]
+  d_fix <- d_mov[(fix)]
+  
+  d_cov <- cov_load()
+  d_fix[d_cov, on = c(tomatourl = 'surl'), fix := FALSE]
+  d_fix <- d_fix[(fix)]
+}
 
-d_rev <- rev_load()
-d_rev[d_mov, on = c(surl = 'tomatourl'), tomatourl := i.tomatourl]
-d_surl <-  d_rev[!is.na(tomatourl), !c('uurl','rating')][, unique(.SD)]
-d_surl[, fix := FALSE]
-d_mov[d_surl, on = c(tomatourl = 'surl'), fix := i.fix]
-d_mov[is.na(fix), fix := TRUE]
-d_fix <- d_mov[(fix)]
-
-d_cov <- cov_load()
-d_fix[d_cov, on = c(tomatourl = 'surl'), fix := FALSE]
-d_fix <- d_fix[(fix)]
+# d_mov <- mov_load()
+# d_mov <- d_mov[!is.na(tomatourl)]
+# d_mov <- d_mov[imdbvotes > 200]
+# d_cov <- cov_load()
+# d_fix <- d_mov[!d_cov, on = c(tomatourl = 'surl')]
+# # d_fix[d_cov, on = c(tomatourl = 'murl'), nomatch = 0]
+# # d_fix <- d_fix[!d_cov, on = c(tomatourl = 'murl')]
 
 if (F) {
   # rd <- remDr
@@ -48,3 +58,4 @@ for (i in seq(nrow(d_fix))) {  # i =1
   cat(msg_lp)
   rm(list = ls(pattern = "_lp$"))
 }
+l
