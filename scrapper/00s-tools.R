@@ -156,6 +156,16 @@ tsub <- function(X, FUN, ...,
   ans
 }
 
+chkc <- function(connection = con, envir = parent.frame()) {
+  test_qry <- "select TRUE;"
+  try(res_test <- RPostgreSQL::dbGetQuery(con, test_qry)[[1]], silent = T)
+  if (exists('res_test', inherits = FALSE) && res_test == "1") return(con)
+  con_ <- odbc::dbConnect(odbc::odbc(), con@info$sourcename)
+  assign_nm <- deparse(substitute(connection))
+  assign(assign_nm, con_, envir = envir)
+  return(invisible(con_))
+}
+
 ## Tomato functions ####
 if (F) {
   topbox = tb_nodes[[1]]
@@ -177,7 +187,7 @@ if (F) {
 }
 
 if (F) rd_ = pg_xml
-.f_extract_tomato_xml <- \(rd_ = pg_xml, surl = surl, nexti = nexti) {
+f_extract_tomato_xml <- \(rd_ = pg_xml, surl = surl, nexti = nexti) {
   topbox_xp <- "//li[@class='audience-reviews__item']"
   tb_nodes <- xml2::xml_find_all(rd_, xpath = topbox_xp)
   iter_l <- lapply(tb_nodes, .f_extract_tomato_xml)

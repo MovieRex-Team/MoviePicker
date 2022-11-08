@@ -267,15 +267,7 @@ if (FALSE) {
       
       ## https://www.w3schools.com/sql/ ##
       con <- odbc::dbConnect(odbc::odbc(), "PostgreSQL35Wtest")
-      chkc <- function(connection = con, envir = parent.frame()) {
-        test_qry <- "select TRUE;"
-        try(res_test <- RPostgreSQL::dbGetQuery(con, test_qry)[[1]], silent = T)
-        if (exists('res_test', inherits = FALSE) && res_test == "1") return(con)
-        con_ <- odbc::dbConnect(odbc::odbc(), con@info$sourcename)
-        assign_nm <- deparse(substitute(connection))
-        assign(assign_nm, con_, envir = envir)
-        return(invisible(con_))
-      }
+      
       if (!exists('v')) v <- T
       if (v) RPostgreSQL::dbGetQuery(chkc(con), "select TRUE;")
       if (v) RPostgreSQL::dbGetQuery(chkc(con), "SELECT COUNT(*) FROM movies")

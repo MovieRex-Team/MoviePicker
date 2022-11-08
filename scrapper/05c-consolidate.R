@@ -1,3 +1,5 @@
+wd <- normalizePath(file.path(rstudioapi::documentPath(),".."))
+setwd(wd)
 source(file.path(getwd(), "00l-loaders.R"))
 
 d_tos <- tos_load()
@@ -15,10 +17,14 @@ d_comb <- rbind(d_tos, d_rev, fill = T)
 rm_b <- duplicated(d_comb[, .(surl, uurl)])
 d_comb <- d_comb[!rm_b]; rm(rm_b)
 
+
 # d_comb[J(unlist(d_cov[1])), on = 'surl', nomatch = 0][, .N, surl]
 # d_comb[J(unlist(d_cov[1])), on = 'tomatourl', nomatch = 0][, .N, tomatourl]
 d_comb[d_mov, on = c(surl = 'tomatourl'), tomatourl := i.tomatourl]
-d_remains <- d_comb[is.na(tomatourl), by = 'surl', .N][order(-N)]
+## Not found linkable with d_mov ##
+# d_remains <- d_comb[is.na(tomatourl), by = 'surl', .N][order(-N)]
+## All found in d_mov ##
+d_remains <- d_comb[!is.na(tomatourl), by = 'surl', .N][order(-N)]
 d_remains <- d_remains[!d_rot, on = 'surl']
 
 if (F) {
