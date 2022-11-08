@@ -83,7 +83,7 @@ d_mov[, year := as.integer(year)]
 
 if (FALSE) {
   d_mov[1:2000, .SD, .SDc = 1:9] %>% tail(50)
-  d_mov[str_detect(title, "(?i)thin red")]
+  d_mov[str_detect(title, "(?i)virgin")]
 }
 
 rating_l <- list(
@@ -104,13 +104,19 @@ rating_l <- list(
   c(title = "October Sky", rating = 6),
   c(title = "Meet Joe Black", rating = 10),
   c(title = "Star Trek: First Contact", rating = 10),
-  c(title = "The Thin Red Line", year = 1998, rating = 6)
+  c(title = "The Thin Red Line", year = 1998, rating = 6),
+  c(title = "Sister Act", rating = 6),
+  c(title = "The 40-Year-Old Virgin", rating = 8)
 )
 d_target <- lapply(rating_l, \(x) as.data.table(as.list(x)))
 d_target <- cbind(data.table(uurl = "me"), rbindlist(d_target, fill = T)[-1])
 for (j in c('year','rating')) set(d_target, j = j, value = as.integer(d_target[[j]]))
 d_target[d_mov, on = 'title', tomatourl := i.tomatourl]
 d_target[d_mov, on = c('title','year'), tomatourl := i.tomatourl]
+
+if (FALSE) {
+  d_target[, .(tomatourl, rating)] %>% toJSON()
+}
 
 d_ss <- d_comb[d_target[, 'tomatourl'], on = 'tomatourl']
 d_N <- d_ss[, .N, uurl][order(-N)]
@@ -126,39 +132,64 @@ if (TRUE) {
     d_target[1:7, .SD, .SDc = names(d_ss)][, uurl := "me7"],
     d_ss)
 }
-
 d_cor <- dcast(d_ss, tomatourl ~ uurl, value.var = 'rating')
 ref_fld <- c('tomatourl','me')
 d_me <- d_cor[, .SD, .SDc = ref_fld]
 d_cor <- d_cor[, .SD, .SDc = !ref_fld]
 # scr_agree <- \(x, y) 10 - abs(x - y)
-scr_vr <- \(x, y) (x - y) ^ 2
-d_scr <- d_cor[, lapply(.SD, scr_vr, x = d_me$me)]
-# scr_sd  <- \(x) sum(x, na.rm = T) / log(sum(!is.na(x)))
-scr_sd  <- \(x) sum(x, na.rm = T) / (sum(!is.na(x)) - 1)
-d_res <- as.data.table(as.list(sapply(d_scr, scr_sd)))
+f_scr_vr <- \(x, y) (x - y) ^ 2
+d_scr <- d_cor[, lapply(.SD, f_scr_vr, x = d_me$me)]
+# d_scr[, .SD, .SDc = 1:10]
+f_scr_mx  <- \(x) max(x, na.rm = T) # / (sum(!is.na(x)) - 1)
+d_max <- as.data.table(as.list(sapply(d_scr, f_scr_mx)))
+f_fill_na <- \(x, m) {
+  x_ <- x[is.na(x)]
+  x[is.na(x)] <- seq(x_) + m; x
+}
+d_scr[, names(d_scr) := mapply(f_fill_na, .SD, d_max, SIMPLIFY = F)]
+f_scr_sd  <- \(x) sum(x, na.rm = T) # / (sum(!is.na(x)) - 1)
+d_res <- as.data.table(as.list(sapply(d_scr, f_scr_sd)))
 d_buf <- d_res[, lapply(.SD, \(x) "")]
-
 ##TODO: Improve this so that it scores closer for more values ##
 d_tes <- transpose(d_res, keep.names = 'rn')[order(V1)]
+setnames(d_tes, 'V1', 'closeness')
 
-# rbind(cbind(d_me, d_cor), d_buf, d_scr, d_buf, d_res, fill = T)
-top_nms <- d_tes[1:10, rn]
-top_nms <- union(p0('me', 5:7), top_nms)
-d1 <- cbind(d_me, d_cor[, .SD, .SDc = top_nms])
-d_buf <- d1[1, lapply(.SD, \(x) "")]
-d2 <- cbind(d_me[][, me := 0L], d_scr[, .SD, .SDc = top_nms])
-d3 <- d_res[, .SD, .SDc = top_nms]
-rbind(d1, d_buf, d2, d_buf, d3, fill = T)
+if (v) {
+  # rbind(cbind(d_me, d_cor), d_buf, d_scr, d_buf, d_res, fill = T)
+  top_nms <- d_tes[1:13, rn]
+  top_nms <- union(p0('me', 5:7), top_nms)
+  d1 <- cbind(d_me, d_cor[, .SD, .SDc = top_nms])
+  d_buf <- d1[1, lapply(.SD, \(x) "")]
+  d2 <- cbind(d_me[][, me := 0L], d_scr[, .SD, .SDc = top_nms])
+  d3 <- d_res[, .SD, .SDc = top_nms]
+  rbind(d1, d_buf, d2, d_buf, d3, fill = T)
+}
 
 # d_ss[uurl == "/user/id/234686004"]
 # dcast(d_ss, tomatourl ~ uurl, value.var = 'rating')
+if (FALSE) {
+  setcolorder(d_cor, 'me')
+  N_mov <- length(rating_l)
+  res_l <- Hmisc::rcorr(as.matrix(d_cor), type = "pearson")[c('r','n')]
+  res_l <- append(list(uurl = row.names(res_l$r)), lapply(res_l, \(x) x[, 'me']))
+  d_res <- as.data.table(res_l)[uurl != "me"]
+  N_mov
+  setorder(d_res, -r)
+}
 
-setcolorder(d_cor, 'me')
-N_mov <- length(rating_l)
-res_l <- Hmisc::rcorr(as.matrix(d_cor), type = "pearson")[c('r','n')]
-res_l <- append(list(uurl = row.names(res_l$r)), lapply(res_l, \(x) x[, 'me']))
-d_res <- as.data.table(res_l)[uurl != "me"]
-
-N_mov
-setorder(d_res, -r)
+if (FALSE) {
+  setkey(d_comb, uurl)
+  d_cls <- d_tes[!str_detect(rn, "me")]
+  d_hold <- data.table()
+  n_store <- 0
+  for (i in seq(nrow(d_))) {  ##  i = 1  i = 2
+    d_lp <- d_comb[d_cls[i], on = c(uurl = 'rn')][rating >= 9][, i := i]
+    d_hold <- rbind(d_hold, d_lp)
+    n_store <- n_store + nrow(d_hold)
+    if (i > 50 & n_store > 1000) break
+    rm(list = ls(pattern = "_lp$"))
+  }
+  d_hold[, .N, tomatourl][order(-N)]
+  
+  
+}
