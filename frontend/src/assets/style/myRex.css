@@ -1,0 +1,32 @@
+.rexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.rexDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 2%;
+}
+
+.rexButtons {
+    background: lightgray;
+    color: black;
+    border: black solid 1px;
+    border-radius: .5rem;
+    padding: 1%;
+    cursor: pointer;
+    margin: 2%;
+}
+
+.rexButtons:hover {
+    background: black;
+    color: lightgray;
+    border: lightgray solid 1px;
+    transition: .3s;
+}

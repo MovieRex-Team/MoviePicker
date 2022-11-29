@@ -1,0 +1,44 @@
+.profileContainer {
+    display: block
+}
+
+.reviewDiv {
+    display: flex;
+    flex-direction: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: .5rem;
+}
+
+.reviewDiv:hover {
+    background: black;
+    color: white;
+    transition: .3s;
+}
+
+.profileButtons {
+    background: lightgray;
+    color: black;
+    border: black solid 1px;
+    border-radius: .5rem;
+    padding: 2%;
+    cursor: pointer;
+    margin: 2%;
+}
+
+.profileButtons:hover {
+    background: black;
+    color: lightgray;
+    border: lightgray solid 1px;
+    transition: .3s;
+}
+
+@media only screen and (min-width:768px) {
+    .profileContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
