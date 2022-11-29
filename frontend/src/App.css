@@ -1,0 +1,430 @@
+/* Main body on Main Page*/
+body {
+  background-color: #14181c;
+  /* background-image: url('assets/slowRoll.gif');
+  background-size: 35%; */
+  color: rgb(255, 255, 255);
+  margin-bottom: 100px;
+}
+
+.green {
+  color: #40826D;
+}
+
+.lightgray {
+  color: #a6a6a6
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.sentRatingP {
+  color: #40826D;
+  font-size: 1.1rem;
+}
+
+/* Main Header on Main Page */
+.App {
+  text-align: center;
+}
+
+.getMyRexButton {
+  padding: 1% 2%;
+  color: #40826D;
+  background: whitesmoke;
+  border: #40826D solid 2px;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin: 1%;
+  font-size: 1.1rem;
+}
+
+.getMyRexButton:hover {
+  color: whitesmoke;
+  background: #40826D;
+  border: whitesmoke solid 2px;
+}
+
+/*.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+*/
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} 
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5%;
+}
+
+/* Login/Register buttons on Home Page */
+.linkDiv {
+  margin-top: 50px;
+}
+
+.messageSuccess {
+  width: 50%;
+  margin: auto;
+  padding: 3px;
+  border-radius: .5rem;
+  background-color: green;
+  margin-top: 2%;
+}
+
+.messageError {
+  width: 50%;
+  margin: auto;
+  padding: 1px;
+  border-radius: .5rem;
+  background-color: red;
+  margin-top: 2%;
+}
+
+.linkButton {
+  color: #282c34;
+  background-color: white;
+  border: 1px#282c34 solid;
+  border-radius: .5rem;
+  padding: 2%;
+  cursor: pointer;
+  text-decoration: none;
+  max-height: 30px;
+  max-height: 30px;
+  margin-bottom: 200px;
+  width: 200px;
+  margin: 0 auto;
+  display: inline;
+}
+
+.linkButton:hover {
+  color: #99AABB;
+  border: 1px whitesmoke solid;
+  background-color: #282c34;
+  transition: .3s
+}
+
+.loginDiv {
+  margin-top: 100px;
+}
+
+.logButton {
+  color: white;
+  background-color: whitesmoke;
+  border: 1px#282c34 solid;
+  border-radius: .5rem;
+  padding: 2%;
+  cursor: pointer;
+  text-decoration: none;
+  max-height: 30px;
+  margin-top: 100px;
+  width: 200px;
+  margin: 0 auto;
+  display: inline;
+}
+
+.logButton:hover {
+  color: whitesmoke;
+  border: 1px whitesmoke solid;
+  background-color: #282c34;
+  transition: .3s
+}
+
+/* Quick Pick button on Main Page*/
+.quickPickDiv {
+  margin-top: 50px;
+}
+
+.quickPickButton {
+  padding: 1% 2%;
+  border: 1px solid #40826D;
+  color: #40826D;
+  border-radius: .5rem;
+  cursor: pointer;
+  background-color: whitesmoke;
+  text-decoration: none;
+}
+
+.QuestButton {
+  padding: 1% 2%;
+  border: 1px solid #40826D;
+  color: #40826D;
+  border-radius: .5rem;
+  cursor: pointer;
+  background-color: whitesmoke;
+  text-decoration: none;
+}
+
+.quickPickButton:hover {
+  color: whitesmoke;
+  background-color: #40826D;
+  border: 1px solid whitesmoke;
+  transition: .5rem;
+}
+
+.moviePickCard {
+  width: 80%;
+  background: white;
+  border-radius: .5rem;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.quickPickGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowButtons {
+  cursor: pointer;
+}
+
+
+/* !!! */
+
+
+.moviePickPoster img {
+  border-radius: 10px;
+}
+
+
+.starButton {
+  cursor: pointer;
+  color: #FFD700;
+}
+
+
+.animate {
+  animation-duration: 2s;
+  animation-name: animate-fade;
+  animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ratingsDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: whitesmoke;
+  color: black;
+  width: 150px;
+  height: 125px;
+  border-radius: .5rem;
+  margin-bottom: 10px;
+}
+
+.quickPickDesc {
+  padding: 2%;
+  border-radius: .5rem;
+  background: #7a8591;
+  color: #7a8591;
+  width: 95%;
+  margin: auto;
+  border: 1px solid black;
+  color: black;
+}
+
+.moviePickPoster {
+  border-radius: .5rem 0 0 .5rem;
+  min-height: 100%;
+  width: auto;
+}
+
+.quickInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.quickDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.quickHeader,
+.infoHeader,
+.ratingHead,
+.ratingValue {
+  font-weight: 700;
+}
+
+.hateButton {
+  background: #333333;
+  color: whitesmoke;
+}
+
+/* Questionaire buttons */
+.listButton {
+  color: #282c34;
+  background-color: whitesmoke;
+  border: 1px#282c34 solid;
+  border-radius: .5rem;
+  padding: 2%;
+  cursor: pointer;
+  text-decoration: none;
+  max-height: 30px;
+  margin-bottom: 200px;
+  width: 200px;
+  margin: 0 auto;
+  display: inline;
+  margin-left: -500px;
+}
+
+.listButton:hover {
+  color: whitesmoke;
+  border: 1px whitesmoke solid;
+  background-color: #282c34;
+  transition: .3s
+}
+
+.pickButton {
+  color: #282c34;
+  background-color: whitesmoke;
+  border: 1px#282c34 solid;
+  border-radius: .5rem;
+  padding: 2%;
+  cursor: pointer;
+  text-decoration: none;
+  max-height: 30px;
+  margin-bottom: 200px;
+  width: 200px;
+  margin: 0 auto;
+  display: inline;
+  margin-left: 100px;
+}
+
+.pickButton:hover {
+  color: whitesmoke;
+  border: 1px whitesmoke solid;
+  background-color: #282c34;
+  transition: .3s
+}
+
+.recText {
+  margin-top: 50px;
+}
+
+
+
+.moviePickCard .moviePickPoster {
+  position: relative;
+  overflow: hidden;
+}
+
+.moviePickCard .moviePickPoster img {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.moviePickHeader {
+  position: absolute;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  box-sizing: border-box;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.moviePickCard .moviePickPoster:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #000 50%, transparent);
+  transition: 0.5s;
+  z-index: 1;
+}
+
+
+
+.starDisplay {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  margin-left: -4px;
+}
+
+/* CSS for Rating Card.js */
+.moviePickPosters {
+  width: 250px;
+  height: 380px;
+  border: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.moviePickTitle {
+  color: black;
+  margin-top: 10px;
+}
+
+.moviePickCards {
+  width: 80%;
+  background: #7a8591;
+  border-radius: .5rem;
+  margin: auto;
+  padding-right: 28px;
+  margin-top: 60px;
+}

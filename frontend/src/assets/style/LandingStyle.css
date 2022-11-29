@@ -1,0 +1,43 @@
+.titleDiv {
+    margin-bottom: 100px;
+}
+
+.bottomDiv {
+    margin-top: 100px;
+}
+
+.imageContainer {
+    border-radius: 10px;
+}
+
+.titleDiv {}
+
+.title {
+    color: #a6a6a6;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #a6a6a6;
+    font-weight: 550;
+    font-size: 1.2rem;
+    width: '80%';
+    margin: auto;
+    width: '80%';
+    margin-bottom: 25px;
+}
+
+@media only screen and (min-width:768px) {
+    .subtitle {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width:968px) {
+    .subtitle {
+        width: 60%;
+    }
+}
+.moviePosters {
+    border-radius: 10px;
+}

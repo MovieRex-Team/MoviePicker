@@ -1,0 +1,207 @@
+.navBar {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center; */
+    width: 100%;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.navigation {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0rem;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+}
+
+.navText {
+    color: black;
+}
+
+.navText:hover {
+    color: #40826D;
+}
+
+.navSection {
+    height: 30px;
+    padding: 10px 20px 0;
+}
+
+.navText {
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.navInput {
+    border-radius: .5rem;
+    width: 100px;
+    height: 20px;
+}
+
+.loginInputDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navButton {
+    border: 1px solid #595959;
+    background: white;
+    color: #595959;
+    padding: 1%;
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: 1.5%
+}
+
+.navButton:hover {
+    border: 1px solid white;
+    color: white;
+    background: #595959;
+    transition: .3s
+}
+
+.navText:hover {
+    color: #40826D;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.navLink {
+    text-decoration: none;
+    color: black;
+}
+
+.brand-name {
+    font-size: 1.3rem;
+    margin-left: 1rem;
+    color: white
+}
+
+.brand-name:hover {
+    color: #40826d;
+}
+
+.hamburger {
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #a6a6a6;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: block;
+}
+
+.hamburger:hover {
+    background-color: #40826D;
+}
+
+.navigation-menu {
+    display: none;
+    text-align: left;
+    margin: 0;
+}
+
+.navigation-menu.expanded {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: 230px;
+    border-top: 1px solid black;
+    display: block;
+    background: whitesmoke;
+    color: black;
+}
+
+.getMoreButton {
+    padding: 1%;
+    color: #40826D;
+    background: whitesmoke;
+    border: #40826D solid 2px;
+    border-radius: .5rem;
+    cursor: pointer;
+    margin: 1%;
+    font-size: 1.1rem;
+}
+
+.getMoreButton:hover {
+    color: whitesmoke;
+    background: #40826D;
+    border: whitesmoke solid 2px;
+}
+
+@media only screen and (min-width:400px) {
+    .loginInputDiv {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 60%;
+        margin-left: 10px;
+        border-radius: .5rem;
+        background-color: #595959;
+    }
+
+    .loginInputDiv input {}
+}
+
+@media only screen and (min-width:783px) {
+    .loginInputDiv {
+        padding-top: 0;
+        padding-bottom: 0;
+        width: 110%;
+        margin-left: 0;
+        border-radius: 0;
+        background-color: black;
+    }
+
+    .loginInputDiv input {
+        margin-bottom: 0;
+    }
+
+    .navBar {
+        width: 90%;
+        margin: auto;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .navigation-menu {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+    }
+
+    .navText {
+        color: #a6a6a6;
+    }
+}
+
+img {
+    text-align: left;
+}
+
+@media only screen and (min-width:1200px) {
+    .navBar {
+        width: 80%;
+        margin: auto;
+    }
+}

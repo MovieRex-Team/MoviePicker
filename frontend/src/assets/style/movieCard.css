@@ -1,0 +1,16 @@
+.movieArr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.poster {
+  margin: auto;
+  border-radius: 10px;
+}
+
+.inactive {
+  display: none;
+}
