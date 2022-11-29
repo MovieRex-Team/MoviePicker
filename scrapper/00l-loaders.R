@@ -32,6 +32,7 @@ tos_load <- function(file_list = tomato2_files) {
   # d_rbl[, .(surl, uurl)][, unique(.SD)][, by = 'uurl', .N][order(-N)][1:100]
   d_tos <- copy(d_rbl)
   set(d_tos, j = 'nexti', value = NULL)
+  d_tos <- d_tos[!str_detect(surl, "'")]
   d_tos
 }
 
@@ -52,6 +53,7 @@ rev_load <- function(file_list = user_file) {
   d_rbl <- d_rbl[surl != ""]
   d_rbl <- d_rbl[!duplicated(d_rbl[, .(uurl, surl)])]
   setcolorder(d_rbl, c('surl','uurl'))
+  d_rbl <- d_rbl[!str_detect(surl, "'")]
   d_rbl
 }
 
@@ -67,6 +69,7 @@ cov_load <- function(file_list = conversion_file) {
   d_cov <- d_data[, rbindlist(DATA, fill = T)]
   d_cov <- d_cov[murl != ""]
   d_cov[, surl := str_remove(surl, "/$")]
+  d_cov <- d_cov[!str_detect(surl, "'")]
   d_cov
 }
 
@@ -98,13 +101,10 @@ rot_load <- function(file_list = rotten_file) {
     flds <- c('genre','runtime')
     d_rot[!is.na(scr_brd), (flds) := tsub(scr_brd, str_split_1, pattern = ",[ ]*")]
     set(d_rot, j = 'scr_brd', value = NULL)
-    
     # f_str_split <- function(...) str_split(..., n = 2)[[1]]
     # d_rot[, tsub(scr_brd, f_str_split, pattern = ",[ ]*")]
-    
   }
- 
-  
+  d_rot <- d_rot[!str_detect(surl, "'")]
   d_rot
 }
 
@@ -206,6 +206,7 @@ mov_load <- function(file_list = movies_Rds, movies_file = NULL) {
     d_mov[, tomatourl := str_remove(tomatourl, trim_url_RE)]
     d_mov
   }
+  d_mov <- d_mov[!str_detect(tomatourl, "'")]
   d_mov
 }
 
